@@ -61,7 +61,7 @@ const CreateShares: NextPage = () => {
     useState("");
   const [minTimeLockServersCountError, setMinTimeLockServersCountError] =
     useState("");
-  const defaultServerListProvider = "https://timelock.onrender.com";
+  const defaultServerListProvider = "https://timelock.sondhi.app";
   const [providerUrl, setProviderUrl] = useState(defaultServerListProvider);
   const [usedProviderUrl, setUsedProviderUrl] = useState(
     defaultServerListProvider,
