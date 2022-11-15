@@ -17,6 +17,6 @@ jobs:
       - name: Deploy to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: secret-share # the name of the project on Deno Deploy
+          project: "sondhi-app" # the name of the project on Deno Deploy
           entrypoint: main.ts # the entrypoint to deploy
           root: web/serverless/deno-deploy
