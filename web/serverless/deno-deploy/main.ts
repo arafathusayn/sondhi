@@ -245,7 +245,7 @@ router.post(routes.CREATE_ROOM, async (ctx) => {
       return;
     }
 
-    const expiresInSeconds = Deno.env.get("DATA_EXPIRE_SECONDS") || "60";
+    const expiresInSeconds = Deno.env.get("DATA_EXPIRE_SECONDS") || "120";
 
     const result2 = await execRedisCommand({
       command: "EXPIRE",

@@ -16,8 +16,8 @@ import { GlobalStateContext } from "../store/global";
 
 let defaultServerlessBaseUrls = [
   {
-    value: "https://secret-share.deno.dev",
-    label: "https://secret-share.deno.dev",
+    value: "https://room.sondhi.app",
+    label: "https://room.sondhi.app",
   },
 ];
 

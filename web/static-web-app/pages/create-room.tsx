@@ -66,14 +66,17 @@ const CreateRoom: NextPage = () => {
 
   const router = useRouter();
 
-  const { serverlessApiAccessToken: token, serverlessApiBaseUrl: url } =
-    state.context;
+  const { serverlessApiAccessToken, serverlessApiBaseUrl } = state.context;
+
+  let token = serverlessApiAccessToken;
+  let url = serverlessApiBaseUrl;
 
   if (
     (state.matches("SettingsLoaded") || state.matches("Settings")) &&
     (!token || !url)
   ) {
-    router.push("/settings?back=/create-room");
+    token = process.env.NEXT_PUBLIC_SERVERLESS_API_ACCESS_TOKEN || "room";
+    url = "https://room.sondhi.app";
   }
 
   const attemptToDecrypt = useCallback(async () => {
