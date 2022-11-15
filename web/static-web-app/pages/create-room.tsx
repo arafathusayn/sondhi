@@ -331,9 +331,7 @@ const CreateRoom: NextPage = () => {
               style={{ width: "80vw", maxWidth: "400px" }}
               mb="xl"
             >
-              Note: Creating room and copying the secret manually is not
-              recommended. Use automated tools to integrate this feature. This
-              page exists for demo purposes.
+              {`Note: Creating room and copying the secret manually is not recommended unless you want to use the time-lock feature. Use automated tools (eg. browser extension) to integrate the feature for joint-accounts.`}
             </Text>
 
             <TextInput
