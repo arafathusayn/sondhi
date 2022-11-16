@@ -1,29 +1,26 @@
-### Command-Line
---------------------------
-Install Deno version 1.26.1 or newer. Linux or Unix system is required.
+## Sondhi
 
-#### One-Time Setup using CLI
+Sondhi is a collection of implementations for the following concepts:
 
-To create secret-shares, run the command-line program:
+- [Shamir's Secret Sharing](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing) (offline [CLI](./cli/) and online [app](./web/static-web-app/))
+- Decentralized Wall-clock Time, based on [multi-blockchains](./time-lock/nest.js/src/time/time.utils.ts)
+- [Federated Time-Lock](./time-lock/) (runtime and database)
+- Live Sharing of Secrets
+- [Passwords for joint-accounts](./web/browser-extensions/)
 
-```bash
-cd cli/
+### Project Goals:
 
-deno run --unstable --no-remote --allow-read=./ --allow-write=./ one_time_setup.ts
-```
+- Digital Asset Inheritence without central authority
+- Automatic secret-sharing during one's permanent unavailability
+- Building decentralized and federated systems for secret-sharing
+- Long-term support for the time-lock data storage
+- Preventing the collection of user data using encryption and anonimity
+- Converting centralized systems of data-sharing into decentralized systems
 
-#### Recover using CLI
-
-- `xsel` needs to be installed on Linux for copying.
-
-To recover secret from the shares, run the command-line program:
-
-```bash
-cd cli/
-
-deno run --unstable --no-remote --allow-read=./ --allow-write=./ recover.ts
-```
-
-#### Additional Notes:
-- `--unstable` flag is only required for [Deno.stdin.setRaw()](https://doc.deno.land/deno/stable/~/Deno.stdin)
-- `--no-remote` to prevent downloading any code from the internet
+### Technologies Used:
+- Web Assembly & TypeScript
+- Web Cryptography API
+- Browser, Deno & Node.js runtimes
+- React.js, Next.js, Nest.js & Serverless
+- Blockchain JSON-RPC
+  
