@@ -3,7 +3,7 @@
 Sondhi is a collection of implementations for the following concepts:
 
 - [Shamir's Secret Sharing](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing) (offline [CLI](./cli/) and online [app](./web/static-web-app/))
-- Decentralized Wall-clock Time, based on [multi-blockchains](./time-lock/nest.js/src/time/time.utils.ts)
+- Decentralized Wall-clock Time, based on [multi-blockchains](https://github.com/arafathusayn/time-lock-provider/blob/main/src/time/time.utils.ts)
 - [Federated Time-Lock](./time-lock/) (runtime and database)
 - Live Sharing of Secrets
 - [Passwords for joint-accounts](./web/browser-extensions/)
