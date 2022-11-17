@@ -652,7 +652,8 @@ const CreateShares: NextPage = () => {
                             passHref
                           >
                             <Text size="xs" component="a" color="blue">
-                              The other half will be split into secret shares
+                              The other half will be split into {totalShares}{" "}
+                              secret shares
                             </Text>
                           </Link>
                         </Stack>
