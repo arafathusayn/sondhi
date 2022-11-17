@@ -170,7 +170,7 @@ const Home: NextPage = () => {
             </Text>
 
             <Text size="sm" mt="sm">
-              {`Using this process, you may use merge your admin password and recovery password to encrypt and time-lock your other secrets.`}
+              {`Using this process, you may merge your admin password and recovery password to encrypt and time-lock your other secrets.`}
             </Text>
           </Accordion.Panel>
         </Accordion.Item>
