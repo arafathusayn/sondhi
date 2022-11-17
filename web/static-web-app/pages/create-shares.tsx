@@ -522,6 +522,90 @@ const CreateShares: NextPage = () => {
                               : `Get New Servers`}
                           </Button>
                         )}
+
+                        <Stack>
+                          <NumberInput
+                            label="Maximum servers to use"
+                            placeholder={`Enter the number of servers to use`}
+                            size="xs"
+                            type="number"
+                            required
+                            autoComplete="off"
+                            autoCorrect="off"
+                            value={maxTimeLockServersCount}
+                            error={maxTimeLockServersCountError}
+                            onChange={(value) => {
+                              if (typeof value !== "number") {
+                                return;
+                              }
+
+                              if (
+                                value > 0 &&
+                                value <= timeLockServers.length
+                              ) {
+                                setMaxTimeLockServersCount(value);
+                                setMaxTimeLockServersCountError("");
+                              } else {
+                                if (value < 1) {
+                                  setMaxTimeLockServersCountError(
+                                    "It can't be less than 1 server",
+                                  );
+
+                                  return;
+                                }
+
+                                if (value > timeLockServers.length) {
+                                  setMaxTimeLockServersCountError(
+                                    "It can't be more than the number of found servers",
+                                  );
+
+                                  return;
+                                }
+                              }
+                            }}
+                          ></NumberInput>
+
+                          <NumberInput
+                            label="Minimum servers required"
+                            placeholder={`Enter the  minimum number of servers to unlock`}
+                            size="xs"
+                            type="number"
+                            required
+                            autoComplete="off"
+                            autoCorrect="off"
+                            value={minTimeLockServersCount}
+                            error={minTimeLockServersCountError}
+                            onChange={(value) => {
+                              if (typeof value !== "number") {
+                                return;
+                              }
+
+                              if (
+                                value > 0 &&
+                                value <= maxTimeLockServersCount
+                              ) {
+                                setMinTimeLockServersCount(value);
+                                setMinTimeLockServersCountError("");
+                              } else {
+                                if (value < 1) {
+                                  setMinTimeLockServersCountError(
+                                    "It can't be less than 1 server",
+                                  );
+
+                                  return;
+                                }
+
+                                if (value > maxTimeLockServersCount) {
+                                  setMinTimeLockServersCountError(
+                                    "It can't be more than the number of max servers",
+                                  );
+
+                                  return;
+                                }
+                              }
+                            }}
+                          ></NumberInput>
+                        </Stack>
                       </>
                     )}
 
@@ -574,84 +658,6 @@ const CreateShares: NextPage = () => {
                         </Stack>
                       </Card.Section>
                     </Card>
-
-                    <Stack>
-                      <NumberInput
-                        label="Maximum servers to use"
-                        placeholder={`Enter the number of servers to use`}
-                        size="xs"
-                        type="number"
-                        required
-                        autoComplete="off"
-                        autoCorrect="off"
-                        value={maxTimeLockServersCount}
-                        error={maxTimeLockServersCountError}
-                        onChange={(value) => {
-                          if (typeof value !== "number") {
-                            return;
-                          }
-
-                          if (value > 0 && value <= timeLockServers.length) {
-                            setMaxTimeLockServersCount(value);
-                            setMaxTimeLockServersCountError("");
-                          } else {
-                            if (value < 1) {
-                              setMaxTimeLockServersCountError(
-                                "It can't be less than 1 server",
-                              );
-
-                              return;
-                            }
-
-                            if (value > timeLockServers.length) {
-                              setMaxTimeLockServersCountError(
-                                "It can't be more than the number of found servers",
-                              );
-
-                              return;
-                            }
-                          }
-                        }}
-                      ></NumberInput>
-
-                      <NumberInput
-                        label="Minimum servers required"
-                        placeholder={`Enter the  minimum number of servers to unlock`}
-                        size="xs"
-                        type="number"
-                        required
-                        autoComplete="off"
-                        autoCorrect="off"
-                        value={minTimeLockServersCount}
-                        error={minTimeLockServersCountError}
-                        onChange={(value) => {
-                          if (typeof value !== "number") {
-                            return;
-                          }
-
-                          if (value > 0 && value <= maxTimeLockServersCount) {
-                            setMinTimeLockServersCount(value);
-                            setMinTimeLockServersCountError("");
-                          } else {
-                            if (value < 1) {
-                              setMinTimeLockServersCountError(
-                                "It can't be less than 1 server",
-                              );
-
-                              return;
-                            }
-
-                            if (value > maxTimeLockServersCount) {
-                              setMinTimeLockServersCountError(
-                                "It can't be more than the number of max servers",
-                              );
-
-                              return;
-                            }
-                          }
-                        }}
-                      ></NumberInput>
-                    </Stack>
 
                     <Stack>
                       <Text size="xs">Lock Duration:</Text>
