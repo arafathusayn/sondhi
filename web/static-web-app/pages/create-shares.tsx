@@ -24,6 +24,7 @@ import {
 } from "@tabler/icons";
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useState, useEffect, useCallback, useRef } from "react";
 import {
   DurationFormat,
@@ -36,6 +37,9 @@ import { aesGcmEncrypt } from "../utils/cryptography";
 import { encode as encodeBase64 } from "../utils/encoding/base64";
 import { createShares } from "../utils/sss-wasm";
 import convertDurationToSeconds from "../utils/time/duration-to-seconds";
+
+const hideServerListProvider =
+  process.env.NEXT_PUBLIC_TIMELOCK_HIDE_SERVER_LIST_PROVIDER === "true";
 
 const CreateShares: NextPage = () => {
   const [totalShares, setTotalShares] = useState(3);
@@ -476,43 +480,49 @@ const CreateShares: NextPage = () => {
                       Close this panel to continue without time-lock.
                     </Text>
 
-                    <TextInput
-                      label="Server List Provider"
-                      placeholder="Enter Provider URL"
-                      value={providerUrl}
-                      onChange={(event) =>
-                        setProviderUrl(event.currentTarget.value)
-                      }
-                      required
-                    ></TextInput>
+                    {!hideServerListProvider && (
+                      <>
+                        <TextInput
+                          label="Server List Provider"
+                          placeholder="Enter Provider URL"
+                          value={providerUrl}
+                          onChange={(event) =>
+                            setProviderUrl(event.currentTarget.value)
+                          }
+                          required
+                        ></TextInput>
 
-                    {timeLockServersLoading && (
-                      <Stack align="center">
-                        <Loader color="grape" />
-                        <Text size="xs">Fetching the providers...</Text>
-                      </Stack>
-                    )}
+                        {timeLockServersLoading && (
+                          <Stack align="center">
+                            <Loader color="grape" />
+                            <Text size="xs">Fetching the providers...</Text>
+                          </Stack>
+                        )}
 
-                    {!timeLockServersLoading && (
-                      <Button
-                        component="button"
-                        variant="gradient"
-                        gradient={{ from: "darkblue", to: "purple" }}
-                        size="sm"
-                        onClick={async () => {
-                          setTimeLockServersLoading(true);
-                          tlServerListAPICalled.current = false;
-                          await fetchTimeLockServers();
-                          setUsedProviderUrl(providerUrl);
-                        }}
-                        disabled={providerUrl === usedProviderUrl}
-                      >
-                        {providerUrl === usedProviderUrl
-                          ? `Found ${timeLockServers.length} Time-Lock Server${
-                              timeLockServers.length > 1 ? "s" : ""
-                            }`
-                          : `Get New Servers`}
-                      </Button>
+                        {!timeLockServersLoading && (
+                          <Button
+                            component="button"
+                            variant="gradient"
+                            gradient={{ from: "darkblue", to: "purple" }}
+                            size="sm"
+                            onClick={async () => {
+                              setTimeLockServersLoading(true);
+                              tlServerListAPICalled.current = false;
+                              await fetchTimeLockServers();
+                              setUsedProviderUrl(providerUrl);
+                            }}
+                            disabled={providerUrl === usedProviderUrl}
+                          >
+                            {providerUrl === usedProviderUrl
+                              ? `Found ${
+                                  timeLockServers.length
+                                } Time-Lock Server${
+                                  timeLockServers.length > 1 ? "s" : ""
+                                }`
+                              : `Get New Servers`}
+                          </Button>
+                        )}
+                      </>
                     )}
 
                     <Card>
@@ -522,7 +532,8 @@ const CreateShares: NextPage = () => {
                       <Card.Section p="xs">
                         <Stack spacing="xs">
                           <Text size="xs" color="dimmed">
-                            You can use one of the two options:
+                            You can use one of the two options for the first
+                            half:
                           </Text>
 
                           <List type="ordered" size="xs" spacing={0}>
@@ -551,6 +562,15 @@ const CreateShares: NextPage = () => {
                               </Text>
                             </List.Item>
                           </List>
+
+                          <Link
+                            href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing"
+                            passHref
+                          >
+                            <Text size="xs" component="a" color="blue">
+                              The other half will be split into secret shares
+                            </Text>
+                          </Link>
                         </Stack>
                       </Card.Section>
                     </Card>
