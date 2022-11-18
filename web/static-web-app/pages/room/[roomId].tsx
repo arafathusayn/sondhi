@@ -62,10 +62,27 @@ const Room: NextPage = () => {
 
   const { roomId } = router.query;
   const {
-    serverlessApiAccessToken: token,
-    serverlessApiBaseUrl: url,
+    serverlessApiAccessToken,
+    serverlessApiBaseUrl,
     encryptedShare: encryptedShareInContext,
   } = state.context;
+
+  let token = serverlessApiAccessToken;
+  let url = serverlessApiBaseUrl;
+
+  useEffect(() => {
+    send({
+      type: "SETTINGS_REQUESTED",
+    });
+  }, [send]);
+
+  if (
+    (state.matches("SettingsLoaded") || state.matches("Settings")) &&
+    (!token || !url)
+  ) {
+    token = process.env.NEXT_PUBLIC_SERVERLESS_API_ACCESS_TOKEN || "room";
+    url = "https://room.sondhi.app";
+  }
 
   useEffect(() => {
     const timeLockedPrefix = "timelocked_";
@@ -172,6 +189,10 @@ const Room: NextPage = () => {
     }
 
     intervalRef.current = setInterval(async () => {
+      if (!token || !url) {
+        return;
+      }
+
       try {
         const roomData = (await getRoomData({
           roomId,
@@ -195,12 +216,6 @@ const Room: NextPage = () => {
 
     return () => clearInterval(intervalRef.current);
   }, [roomId, token, url]);
-
-  useEffect(() => {
-    send({
-      type: "ROOM_REQUESTED",
-    });
-  }, [send]);
 
   return (
     <>
