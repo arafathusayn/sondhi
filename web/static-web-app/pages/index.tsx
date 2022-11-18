@@ -1,10 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { Accordion, Button, List, Stack, Text } from "@mantine/core";
+import { Accordion, Button, List, Stack, Text, ThemeIcon } from "@mantine/core";
 import { PageLinks } from "../types";
 import {
   IconChartPie,
+  IconCheck,
   IconClockPause,
   IconDoorEnter,
   IconHomeHeart,
@@ -13,7 +14,7 @@ import { siteName } from "../constants";
 
 const Home: NextPage = () => {
   return (
-    <Stack align="center" justify="center" spacing="xl">
+    <Stack align="center" justify="center" spacing="xl" mb="xl">
       <Head>
         <title>{`${siteName}`}</title>
       </Head>
@@ -104,9 +105,10 @@ const Home: NextPage = () => {
           },
         }}
         pb="xl"
+        mb="xl"
       >
         <Accordion.Item value="what" style={{ borderBottom: 0 }}>
-          <Accordion.Control style={{ paddingLeft: "0px" }}>
+          <Accordion.Control style={{ padding: "0px", paddingBottom: "5px" }}>
             <Text size="md">What is {siteName}?</Text>
           </Accordion.Control>
           <Accordion.Panel
@@ -130,8 +132,8 @@ const Home: NextPage = () => {
           </Accordion.Panel>
         </Accordion.Item>
 
-        <Accordion.Item value="timelockhow" style={{ borderBottom: 0 }} pb="xl">
-          <Accordion.Control style={{ paddingLeft: "0px" }}>
+        <Accordion.Item value="timelockhow" style={{ borderBottom: 0 }}>
+          <Accordion.Control style={{ padding: "0px", paddingBottom: "5px" }}>
             <Text size="md" mt="sm">
               How does the Time-Lock work?
             </Text>
@@ -172,6 +174,62 @@ const Home: NextPage = () => {
             <Text size="sm" mt="sm">
               {`Using this process, you may merge your admin password and recovery password to encrypt and time-lock your other secrets.`}
             </Text>
+          </Accordion.Panel>
+        </Accordion.Item>
+
+        <Accordion.Item value="features" style={{ borderBottom: 0 }} pb="xl">
+          <Accordion.Control style={{ padding: "0px", paddingBottom: "5px" }}>
+            <Text size="md" mt="sm">
+              What are the features?
+            </Text>
+          </Accordion.Control>
+          <Accordion.Panel
+            styles={{
+              root: {
+                margin: "0px",
+              },
+            }}
+            pb="xl"
+          >
+            <List
+              mt="md"
+              spacing="xs"
+              size="sm"
+              center
+              icon={
+                <ThemeIcon color="teal" size={16} radius="xl">
+                  <IconCheck size={12} />
+                </ThemeIcon>
+              }
+            >
+              <List.Item>
+                <Text size="xs">
+                  Share secrets that require multiple persons.
+                </Text>
+              </List.Item>
+              <List.Item>
+                <Text size="xs">No single point of failure.</Text>
+              </List.Item>
+              <List.Item>
+                <Text size="xs">Have multiple backups of your secrets.</Text>
+              </List.Item>
+              <List.Item>
+                <Text size="xs">{"Restore the secret after one's death."}</Text>
+              </List.Item>
+              <List.Item>
+                <Text size="xs">
+                  Lock your secrets for a certain amount of time.
+                </Text>
+              </List.Item>
+              <List.Item>
+                <Text size="xs">
+                  Create and use passwords for joint-accounts.
+                </Text>
+              </List.Item>
+              <List.Item>
+                <Text size="xs">Use a password without anyone knowing it.</Text>
+              </List.Item>
+            </List>
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
