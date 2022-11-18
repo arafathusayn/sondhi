@@ -44,8 +44,8 @@ router.post(routes.GET_ROOM, async (ctx) => {
     const roomUuid = body.room.uuid;
 
     const result1 = await execRedisCommand({
-      command: "JSON.GET",
-      args: [roomUuid],
+      command: "GET",
+      args: [`room:${roomUuid}`],
     });
 
     if (typeof result1 !== "string") {
@@ -61,7 +61,7 @@ router.post(routes.GET_ROOM, async (ctx) => {
 
     const result2 = await execRedisCommand({
       command: "TTL",
-      args: [roomUuid],
+      args: [`room:${roomUuid}`],
     });
 
     ctx.response.body = {
@@ -100,8 +100,8 @@ router.post(routes.ADD_ENCRYPTED_SHARE, async (ctx) => {
     const roomUuid = body.room.uuid as string;
 
     const result1 = await execRedisCommand({
-      command: "JSON.GET",
-      args: [roomUuid],
+      command: "GET",
+      args: [`room:${roomUuid}`],
     });
 
     if (typeof result1 !== "string") {
@@ -156,8 +156,8 @@ router.post(routes.ADD_ENCRYPTED_SHARE, async (ctx) => {
     });
 
     const result2 = await execRedisCommand({
-      command: "JSON.SET",
-      args: [roomUuid, "$", JSON.stringify(room)],
+      command: "SET",
+      args: [`room:${roomUuid}`, JSON.stringify(room), "KEEPTTL"],
     });
 
     if (result2 !== "OK") {
@@ -207,8 +207,8 @@ router.post(routes.CREATE_ROOM, async (ctx) => {
     const publicKey = body.room.public_key;
 
     const result0 = await execRedisCommand({
-      command: "JSON.GET",
-      args: [roomUuid],
+      command: "GET",
+      args: [`room:${roomUuid}`],
     });
 
     if (typeof result0 === "string") {
@@ -223,10 +223,9 @@ router.post(routes.CREATE_ROOM, async (ctx) => {
     }
 
     const result1 = await execRedisCommand({
-      command: "JSON.SET",
+      command: "SET",
       args: [
-        roomUuid,
-        "$",
+        `room:${roomUuid}`,
         JSON.stringify({
           min_share_count: minShareCount,
           public_key: publicKey,
@@ -249,7 +248,7 @@ router.post(routes.CREATE_ROOM, async (ctx) => {
 
     const result2 = await execRedisCommand({
       command: "EXPIRE",
-      args: [roomUuid, expiresInSeconds],
+      args: [`room:${roomUuid}`, expiresInSeconds],
     });
 
     if (result2 !== 1) {
