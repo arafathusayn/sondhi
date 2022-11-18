@@ -1,0 +1,15 @@
+version: "2.4"
+services:
+  redis:
+    container_name: "redis"
+    image: redis:6-alpine
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --appendonly yes --requirepass "$${REDIS_DB_PASSWORD:?REDIS_DB_PASSWORD is not set}"
+    volumes:
+      - ./redis/data:/data
+    env_file:
+      - .env
+    ports:
+      - "7000:6379"
