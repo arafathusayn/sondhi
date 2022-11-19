@@ -1,12 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Button, Stack } from "@mantine/core";
-import { IconCloudLockOpen, IconHomeCog } from "@tabler/icons";
+import { IconClockPause, IconCloudLockOpen, IconHomeCog } from "@tabler/icons";
 import { useState } from "react";
 import AdminControlPanel from "../components/TLAdminControlPanel";
 import TimeLockRecovery from "../components/TLRecovery";
+import SimpleTimeLock from "../components/SimpleTimeLock";
 
-export type SelectedMenu = "ADMIN" | "RECOVERY" | undefined;
+export type SelectedMenu =
+  | "SIMPLE_TIME_LOCK"
+  | "ADMIN"
+  | "RECOVERY"
+  | undefined;
 
 const TimeLock: NextPage = () => {
   const [selected, setSelected] = useState<SelectedMenu>();
@@ -28,6 +33,10 @@ const TimeLock: NextPage = () => {
         </title>
       </Head>
 
+      {selected === "SIMPLE_TIME_LOCK" && (
+        <SimpleTimeLock setSelected={setSelected} />
+      )}
+
       {selected === "ADMIN" && <AdminControlPanel setSelected={setSelected} />}
 
       {selected === "RECOVERY" && (
@@ -36,6 +45,26 @@ const TimeLock: NextPage = () => {
 
       {!selected && (
         <>
+          <Button
+            component="button"
+            style={{ width: "85vw", maxWidth: "400px" }}
+            variant="light"
+            color="grape"
+            size="md"
+            leftIcon={<IconClockPause />}
+            styles={{
+              leftIcon: {
+                position: "absolute",
+                left: "10%",
+              },
+            }}
+            onClick={() => {
+              setSelected("SIMPLE_TIME_LOCK");
+            }}
+          >
+            Simple Time-Lock
+          </Button>
+
           <Button
             component="button"
             style={{ width: "85vw", maxWidth: "400px" }}

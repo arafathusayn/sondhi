@@ -125,7 +125,12 @@ const Home: NextPage = () => {
             and an optional time-lock mechanism.`}</Text>
 
             <Link href="https://youtu.be/ojMFCpUt7OU?t=262" target="_blank">
-              <Text size="sm" color="blue" mt="sm">
+              <Text
+                size="sm"
+                color="blue"
+                mt="sm"
+                style={{ cursor: "pointer" }}
+              >
                 {`Watch the full explanation of Shamir's Secret Sharing and its implementation details on YouTube`}
               </Text>
             </Link>
@@ -147,11 +152,14 @@ const Home: NextPage = () => {
             pb="xl"
           >
             <Text size="sm" mt="sm">
-              {`You'll provide two passwords:`}
+              {`For a simple lock, you have:`}
             </Text>
 
             <List type="unordered" size="xs" spacing={0}>
               <List.Item pt="xs" pb={0} mb={0}>
+                <Text size="sm">{`Your Secret`}</Text>
+              </List.Item>
+              <List.Item pb={0} mb={0}>
                 <Text size="sm">{`Admin Password`}</Text>
               </List.Item>
               <List.Item pt={0} mt={0}>
@@ -160,19 +168,40 @@ const Home: NextPage = () => {
             </List>
 
             <Text size="sm" mt="sm">
-              {`The app will encrypt your admin password with your recovery password. The encrypted text of your admin password will be sent to the time-lock providers who will keep it locked for the time duration you mention.`}
+              {`The app will encrypt your secret with your recovery password. The encrypted text of your secret will be sent to the time-lock providers who will keep it locked for the time duration you mention.`}
             </Text>
 
             <Text size="sm" mt="sm">
-              {`You may split your recovery password into multiple shares using Shamir's secret sharing scheme. When the minimum shares are combined, the recovery password can be retrieved.`}
+              {`The recovery password can be used to request the unlocking to the time-lock server. After the request is made, the time-lock server will wait until the lock duration is reached and then it will unlock and send the encrypted admin password back.`}
             </Text>
 
             <Text size="sm" mt="sm">
-              {`This recovery password can be used to request the unlock to the time-lock server. After the request is made, the time-lock server will wait until the lock duration is reached and then it will unlock and send the encrypted admin password back.`}
+              {`Using this process, you may merge this secret of yours and the recovery password to encrypt and time-lock your other secrets.`}
             </Text>
 
             <Text size="sm" mt="sm">
-              {`Using this process, you may merge your admin password and recovery password to encrypt and time-lock your other secrets.`}
+              {`If you use Shamir's Secret Sharing, you have:`}
+            </Text>
+
+            <List type="unordered" size="xs" spacing={0}>
+              <List.Item pt="xs" pb={0} mb={0}>
+                <Text size="sm">{`Your Secret with 2 parts`}</Text>
+              </List.Item>
+              <List.Item pt={0} mt={0}>
+                <Text size="sm">{`Admin Password`}</Text>
+              </List.Item>
+            </List>
+
+            <Text size="sm" mt="sm">
+              {`In this case, your secret will be split into 2 parts. The app will encrypt the 1st part of your secret with the 2nd part. This 2nd part is the recovery password. The encrypted text of the 1st part will be sent to the time-lock providers who will keep it locked for the time duration you mention.`}
+            </Text>
+
+            <Text size="sm" mt="sm">
+              {`The app will create multiple shares from the recovery password (2nd part) using Shamir's secret sharing scheme. When the minimum shares are combined, the recovery password can be retrieved.`}
+            </Text>
+
+            <Text size="sm" mt="sm">
+              {`Using this process, you may use this secret of yours to encrypt and time-lock your other secrets.`}
             </Text>
           </Accordion.Panel>
         </Accordion.Item>

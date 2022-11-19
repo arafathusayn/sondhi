@@ -332,6 +332,7 @@ const AdminControlPanel = ({ setSelected }: AdminControlPanelProps) => {
         opened={!!errorText}
         onClose={() => {
           setErrorText("");
+          router.push("/");
         }}
         title="Error!"
         centered={true}

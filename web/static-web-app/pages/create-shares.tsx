@@ -57,7 +57,7 @@ const CreateShares: NextPage = () => {
   const [adminPassword, setAdminPassword] = useState("");
   const [adminPasswordOK, setAdminPasswordOK] = useState(false);
   const [timeLockOK, setTimeLockOK] = useState(false);
-  const [timeLockAccordingValue, setTimeLockAccordingValue] = useState<
+  const [timeLockAccordionValue, setTimeLockAccordionValue] = useState<
     string | null
   >(null);
   const [maxTimeLockServersCount, setMaxTimeLockServersCount] = useState(1);
@@ -189,12 +189,12 @@ const CreateShares: NextPage = () => {
   }, [maxTimeLockServersCount]);
 
   useEffect(() => {
-    if (timeLockAccordingValue === "timelock") {
+    if (timeLockAccordionValue === "timelock") {
       setUsingTimeLock(true);
     } else {
       setUsingTimeLock(false);
     }
-  }, [timeLockAccordingValue]);
+  }, [timeLockAccordionValue]);
 
   const setRandomSecret = useCallback(() => {
     const randomSecret = encodeBase64(
@@ -371,7 +371,7 @@ const CreateShares: NextPage = () => {
               event.preventDefault();
 
               if (
-                (!usingTimeLock && !timeLockAccordingValue) ||
+                (!usingTimeLock && !timeLockAccordionValue) ||
                 (usingTimeLock && timeLockOK)
               ) {
                 setFirstStepDone(true);
@@ -464,8 +464,8 @@ const CreateShares: NextPage = () => {
               }}
               variant="separated"
               mb="60px"
-              value={timeLockAccordingValue}
-              onChange={setTimeLockAccordingValue}
+              value={timeLockAccordionValue}
+              onChange={setTimeLockAccordionValue}
             >
               <Accordion.Item value="timelock">
                 <Accordion.Control
@@ -744,7 +744,7 @@ const CreateShares: NextPage = () => {
                 !secret ||
                 secret.length > 63 ||
                 (usingTimeLock && !timeLockOK) ||
-                (!!timeLockAccordingValue && !timeLockOK)
+                (!!timeLockAccordionValue && !timeLockOK)
               }
             >
               Next
