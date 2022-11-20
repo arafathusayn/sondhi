@@ -1,4 +1,11 @@
-import { Button, Modal, PasswordInput, Text, Textarea } from "@mantine/core";
+import {
+  Button,
+  Modal,
+  PasswordInput,
+  Text,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
 import {
   IconArrowBack,
   IconLock,
@@ -25,6 +32,7 @@ type AdminControlPanelProps = {
 const AdminControlPanel = ({ setSelected }: AdminControlPanelProps) => {
   const [adminPassword, setAdminPassword] = useState("");
   const [ciphertext, setCiphertext] = useState("");
+  const [lockId, setLockId] = useState("");
   const [refreshButtonDisabled, setRefreshButtonDisabled] = useState(false);
   const [decrypted, setDecrypted] = useState(false);
   const [locked, setLocked] = useState(true);
@@ -56,6 +64,8 @@ const AdminControlPanel = ({ setSelected }: AdminControlPanelProps) => {
 
       ivRef.current = iv;
       setServerResults(results);
+
+      setLockId(results[0]?.uuid || "");
 
       setDecrypted(true);
     } catch (error) {
@@ -243,6 +253,17 @@ const AdminControlPanel = ({ setSelected }: AdminControlPanelProps) => {
           setAdminPassword(event.currentTarget.value.trim());
         }}
       />
+
+      {lockId && (
+        <TextInput
+          style={{ width: "85vw", maxWidth: "400px" }}
+          placeholder="Lock ID"
+          label="Lock ID"
+          value={lockId}
+          onChange={() => {}}
+          onFocus={(e) => e.currentTarget?.select()}
+        />
+      )}
 
       <Button
         component="button"
