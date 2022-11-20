@@ -649,9 +649,10 @@ const CreateShares: NextPage = () => {
 
                           <Link
                             href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing"
+                            style={{ textDecoration: "none" }}
                             passHref
                           >
-                            <Text size="xs" component="a" color="blue">
+                            <Text size="xs" color="blue">
                               The other half will be split into {totalShares}{" "}
                               secret shares
                             </Text>

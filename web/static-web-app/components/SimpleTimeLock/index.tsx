@@ -199,8 +199,12 @@ const SimpleTimeLock = ({ setSelected }: SimpleTimeLockProps) => {
         style={{ width: "85vw", maxWidth: "400px" }}
       >
         {`Please use `}
-        <Link href={PageLinks.CreateShares} passHref>
-          <Text component="a" color="blue">
+        <Link
+          href={PageLinks.CreateShares}
+          style={{ textDecoration: "none" }}
+          passHref
+        >
+          <Text color="blue" component="span" underline={false}>
             {" "}
             Create Shares{" "}
           </Text>

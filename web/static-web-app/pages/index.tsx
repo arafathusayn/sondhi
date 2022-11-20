@@ -22,7 +22,6 @@ const Home: NextPage = () => {
       <Link href={PageLinks.CreateShares} passHref>
         <Button
           mt="xl"
-          component="a"
           style={{ width: "80vw", maxWidth: "400px" }}
           variant="light"
           color="violet"
@@ -41,7 +40,6 @@ const Home: NextPage = () => {
 
       <Link href={PageLinks.CreateRoom} passHref>
         <Button
-          component="a"
           style={{ width: "80vw", maxWidth: "400px" }}
           variant="light"
           color="indigo"
@@ -60,7 +58,6 @@ const Home: NextPage = () => {
 
       <Link href={PageLinks.EnterRoom} passHref>
         <Button
-          component="a"
           style={{ width: "80vw", maxWidth: "400px" }}
           variant="light"
           color="grape"
@@ -79,7 +76,6 @@ const Home: NextPage = () => {
 
       <Link href={PageLinks.TimeLock} passHref>
         <Button
-          component="a"
           style={{ width: "80vw", maxWidth: "400px" }}
           variant="light"
           color="cyan"
@@ -124,13 +120,12 @@ const Home: NextPage = () => {
             to protect and securely share your secrets using Shamir's Secret Sharing scheme
             and an optional time-lock mechanism.`}</Text>
 
-            <Link href="https://youtu.be/ojMFCpUt7OU?t=262" target="_blank">
-              <Text
-                size="sm"
-                color="blue"
-                mt="sm"
-                style={{ cursor: "pointer" }}
-              >
+            <Link
+              href="https://youtu.be/ojMFCpUt7OU?t=262"
+              target="_blank"
+              style={{ textDecoration: "none" }}
+            >
+              <Text size="sm" color="blue" mt="sm">
                 {`Watch the full explanation of Shamir's Secret Sharing and its implementation details on YouTube`}
               </Text>
             </Link>

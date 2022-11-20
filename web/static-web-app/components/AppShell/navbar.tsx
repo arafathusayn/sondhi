@@ -29,8 +29,8 @@ const AppNavbar = () => {
       hidden={isNavOpen !== true}
       width={{ sm: 200, lg: 300 }}
     >
-      <Stack align="center">
-        <Link href="/" passHref>
+      <Stack align="flex-start">
+        <Link href="/" style={{ textDecoration: "none" }} passHref>
           <NavLink
             label="Home"
             icon={<IconHome2 size={16} stroke={1.5} />}
@@ -45,7 +45,11 @@ const AppNavbar = () => {
           />
         </Link>
 
-        <Link href={PageLinks.Settings} passHref>
+        <Link
+          href={PageLinks.Settings}
+          style={{ textDecoration: "none" }}
+          passHref
+        >
           <NavLink
             label="Settings"
             icon={<IconSettings size={16} stroke={1.5} />}
@@ -56,7 +60,11 @@ const AppNavbar = () => {
           />
         </Link>
 
-        <Link href={PageLinks.CreateRoom} passHref>
+        <Link
+          href={PageLinks.CreateRoom}
+          style={{ textDecoration: "none" }}
+          passHref
+        >
           <NavLink
             label="Create Room"
             icon={<IconHomeHeart size={16} stroke={1.5} />}
@@ -67,7 +75,11 @@ const AppNavbar = () => {
           />
         </Link>
 
-        <Link href={PageLinks.EnterRoom} passHref>
+        <Link
+          href={PageLinks.EnterRoom}
+          style={{ textDecoration: "none" }}
+          passHref
+        >
           <NavLink
             label="Enter Room"
             icon={<IconDoorEnter size={16} stroke={1.5} />}
@@ -78,7 +90,11 @@ const AppNavbar = () => {
           />
         </Link>
 
-        <Link href={PageLinks.CreateShares} passHref>
+        <Link
+          href={PageLinks.CreateShares}
+          style={{ textDecoration: "none" }}
+          passHref
+        >
           <NavLink
             label="Create Shares"
             icon={<IconChartPie size={16} stroke={1.5} />}
@@ -89,7 +105,11 @@ const AppNavbar = () => {
           />
         </Link>
 
-        <Link href={PageLinks.TimeLock} passHref>
+        <Link
+          href={PageLinks.TimeLock}
+          style={{ textDecoration: "none" }}
+          passHref
+        >
           <NavLink
             label="Time-Lock"
             icon={<IconClockPause size={16} stroke={1.5} />}
